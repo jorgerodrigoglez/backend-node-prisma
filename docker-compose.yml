@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  todosDB:
+    image: postgres:15.3
+    container_name: anuncios-sample-app
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=jorgerigolez
+      - POSTGRES_PASSWORD=jorgerigolez11248
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
