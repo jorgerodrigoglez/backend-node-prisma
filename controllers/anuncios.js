@@ -21,24 +21,24 @@ const seed = async ( req , res = response ) => {
     });*/
 
     // borra todos los registros de la DDBB
-    // await prisma.anuncio.deleteMany() // se puede poner un where ({ where {complete : false} })
+    await prisma.anuncio.deleteMany() // se puede poner un where ({ where {complete : false} })
     // crea varios registros en la DDBB
-    /*const seedData = await prisma.anuncio.createMany({
+    const seedData = await prisma.anuncio.createMany({
         data: [
-            { title: 'Vendo coche', description: "Fiat Marea año 2003, impecable" },
-            { title: 'Vendo casa', description: "500 m2, centrica y gran jardín" },
-            { title: 'Busco trabajo', description: "De cuidado de niños y limpieza" },
-            { title: 'Vendo ropa', description: "Vendo ropa para niños de 5 años" },
+            {id:"1", title: 'Vendo coche', description: "Fiat Marea año 2003, impecable", user_id: "1"},
+            {id:"2", title: 'Vendo casa', description: "500 m2, centrica y gran jardín", user_id: "2"},
+            {id:"3", title: 'Busco trabajo', description: "De cuidado de niños y limpieza", user_id: "1"},
+            {id:"4", title: 'Vendo ropa', description: "Vendo ropa para niños de 5 años", user_id: "2"},
         
         ]
-    });*/
+    });
 
     //console.log(seedData);
    
     res.json({
         ok: true,
-        //msg: 'anuncios insertados',
-        //seed: seedData,
+        msg: 'anuncios insertados',
+        seed: seedData,
         msg: 'está funcion está desabilitada'
     });
 }
