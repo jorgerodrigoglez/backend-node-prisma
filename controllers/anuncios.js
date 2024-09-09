@@ -21,7 +21,7 @@ const seed = async ( req , res = response ) => {
     });*/
 
     // borra todos los registros de la DDBB
-    await prisma.anuncio.deleteMany() // se puede poner un where ({ where {complete : false} })
+    // await prisma.anuncio.deleteMany() // se puede poner un where ({ where {complete : false} })
     // crea varios registros en la DDBB
     const seedData = await prisma.anuncio.createMany({
         data: [

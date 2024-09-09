@@ -23,15 +23,10 @@ const newUser = async ( req , res = response ) => {
             }
         });
         
-        //console.log(usuario);
+        console.log(usuarioExiste);
         
-        if(usuarioExiste){
-            return res.status(400).json({
-                ok: false,
-                msg: 'El usuario ya existe'
-            });
-               
-        }else{
+        if(!usuarioExiste){
+
             // encriptar contraseña
             const salt = bcrypt.genSaltSync();
             data.password = bcrypt.hashSync( password, salt );
@@ -53,7 +48,14 @@ const newUser = async ( req , res = response ) => {
                 password,
                 token,
             });
-
+           
+               
+        }else{
+        
+            return res.status(400).json({
+                ok: false,
+                msg: 'El usuario ya existe'
+            });
         }
 
     } catch (error) {

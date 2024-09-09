@@ -1,6 +1,7 @@
 # Development
 Pasos para levantar la app en desarrollo
-
+node 20.9.0
+npm run dev
 1. Levantar la base de datos
 ```
 docker compose up -d
