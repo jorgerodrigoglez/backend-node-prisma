@@ -23,7 +23,7 @@ const newUser = async ( req , res = response ) => {
             }
         });
         
-        console.log(usuarioExiste);
+        //console.log(usuarioExiste);
         
         if(!usuarioExiste){
 
@@ -156,8 +156,8 @@ const revalidateToken = async( req , res = response ) => {
    
     res.json({
         ok: true,
-        //uid,
-        //name,
+        uid,
+        name,
         token
     });
 }

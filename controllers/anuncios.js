@@ -118,6 +118,7 @@ const userAnuncios = async( req, res = response ) => {
                 user_id: userId
             },
             select: {
+                id: true,
                 title: true,
                 description: true,
                 usuario: true
@@ -175,7 +176,7 @@ const updateAnuncio = async( req , res = response ) => {
                 msg: 'El anuncio no existe por ese ID',
             });
         };
-        
+
         // se valida que el anuncio lo esta editando el usurio logeado con el token
         if( findAnuncio.user_id !== uid ){
             return res.status(401).json({
@@ -183,18 +184,23 @@ const updateAnuncio = async( req , res = response ) => {
                 msg: 'No tiene el provilegio para editar este anuncio',
             });
         }
-        // añadimos el user_id a la data
-        const newAnuncio = {
-            ...data,
-            user_id: uid,
+        // modificamos el objeto de la data
+        delete data.usuario;
+
+        const newData = {
+           ...data,
+           user_id: uid,
         }
-        //console.log(newAnuncio);
+        //console.log(newData);
 
         // actualizamos datos en DDBB
         const updateAnuncio = await prisma.anuncio.update({
-            where: { id: anuncioId },
-            data: newAnuncio,
+            where: { 
+                id: anuncioId, 
+            },
+            data: newData,
         });
+        //console.log(updateAnuncio)
 
         res.json({
             ok: true,
